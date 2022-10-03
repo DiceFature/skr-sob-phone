@@ -13,10 +13,12 @@
     "antd": "^4.23.3",
     "axios": "^0.27.2",
     "node-sass": "^7.0.3",
+    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
@@ -43,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/nprogress": "^0.2.0"
   }
 }

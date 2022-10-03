@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+// 进度条加载
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 let axiosOption = {
     baseURL:"http://xxx.xxx.xxx.xxx:8080",
     timeout:3000
@@ -8,7 +12,8 @@ let axiosOption = {
 const instance = axios.create(axiosOption);
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
-
+  // 开启进度条
+  NProgress.start();
   // 可以在此注入token
   return config;
 }, function (error) {
@@ -18,6 +23,9 @@ instance.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
+  // 关闭进度条
+  NProgress.done();
+
   // 对响应数据做点什么
   // console.log(response.data);
   return response.data;
