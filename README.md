@@ -57,7 +57,7 @@ git pull origin master:dev-mingzi
 git pull origin master
 
 # 我们的话就是用这个指令：
-git pull origin develop
+git pull origin feature
 ```
 
 - 每天都要将你新开发的代码提交合并到你所在的分支，保证项目的进度

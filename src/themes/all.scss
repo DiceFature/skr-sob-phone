@@ -1,25 +1,30 @@
-$color-text:#666;
-$color-high-text:#ff5777;
-$color-tint:#ff8098;
-$color-background:#fff;
-$font-size:14px;
-$line-height:1.5;
+// 全局样式
+$color-text: #666;
+$color-high-text: #ff5777;
+$color-tint: #ff8098;
+$color-background: #fff;
+$font-size: 14px;
+$line-height: 1.5;
 
 *,
 *::after,
-*::before{
+*::before {
   margin: 0;
-  padding: 0; 
+  padding: 0;
 }
-input:focus{
+
+input:focus {
   font-size: 16px;
+
 }
+
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
 }
+
 .fade-enter-active,
-.fade-leave-active{
+.fade-leave-active {
   transition: opacicy 0.5s;
 }
 
@@ -31,22 +36,26 @@ input:focus{
 // }
 
 body {
-  font-family: "Helvetica Neue", Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-  user-select: none; /* 禁止用户鼠标在页面上选中文字/图片等 */
-  -webkit-tap-highlight-color: transparent;/* 苹果浏览器引擎 tap点击 highlight背景亮度 color颜色 颜色用数值调节 */
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  user-select: none;
+  /* 禁止用户鼠标在页面上选中文字/图片等 */
+  -webkit-tap-highlight-color: transparent;
+  /* 苹果浏览器引擎 tap点击 highlight背景亮度 color颜色 颜色用数值调节 */
   background: $color-background;
   color: $color-text;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; 
-  width: 100vw;
 }
+
 a {
-  color:$color-text;
+  color: $color-text;
   text-decoration: none;
 }
+
 li {
   list-style: none;
 }
+
 .clear-fix::after {
   clear: both;
   content: "";
@@ -55,12 +64,15 @@ li {
   height: 0;
   visibility: hidden;
 }
-.clear-fix{
-  zoom : 1; 
+
+.clear-fix {
+  zoom: 1;
 }
-.left{
+
+.left {
   float: left;
 }
-.right{
+
+.right {
   float: right;
 }

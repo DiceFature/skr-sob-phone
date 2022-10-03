@@ -1,3 +1,4 @@
+- npm i swiper 下载依赖
 ### 轮播图属性介绍
     props 
     ~~~

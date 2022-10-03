@@ -5,7 +5,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 let axiosOption = {
-    baseURL:"http://xxx.xxx.xxx.xxx:8080",
+    baseURL:"https://stride.fun",
     timeout:3000
 }
 // 创建一个单例

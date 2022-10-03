@@ -1,5 +1,5 @@
-import { lazy,Suspense, useEffect } from "react";
-import { Navigate,BrowserRouter,Routes,Route } from "react-router-dom";
+import { lazy,Suspense } from "react";
+import { Navigate,Routes,Route } from "react-router-dom";
 
 // 引入获取cookie的工具ts函数
 import { getCookie } from 'assets/ts/cookie';
@@ -88,7 +88,7 @@ const routes: Array<Router> = [
     },
     // 购物车(需要登陆)
     {
-        path: '/shopcart',
+        path: '/shopcar',
         element:lazyLoad('Mypage'),
         auth:true
     },
@@ -123,7 +123,7 @@ const routes: Array<Router> = [
     // 底部路由跳转
     {
         path:'/about', // 关于我们
-        element:lazyLoad('Home')
+        element:lazyLoad('About')
     },
     {
         path:'/advisory', // 咨询服务
@@ -131,7 +131,7 @@ const routes: Array<Router> = [
     },
     {
         path:'/partner', // 合作伙伴查询
-        element:lazyLoad('Home')
+        element:lazyLoad('Partner')
     },
     {
         path:'/terms', // 服务条款
@@ -147,7 +147,7 @@ const routes: Array<Router> = [
     },
     {
         path:'/offers', // 招聘信息
-        element:lazyLoad('Home')
+        element:lazyLoad('Offter')
     },
     {
         path:'/',
