@@ -33,3 +33,7 @@ export const ADD_ADDRESS = 'add_address';
 export const UPDATA_ADDRESS = 'updataAddress'
 // 删除收获地址
 export const DEL_ADDRESS = 'del_address';
+
+
+// 获取一级分类
+export const GET_NAV_ONE = 'get_nav_one';

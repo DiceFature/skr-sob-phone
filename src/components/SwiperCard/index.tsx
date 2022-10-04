@@ -1,31 +1,27 @@
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import img1 from '../../assets/image/img1.jpg'
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import Cards from 'components/Cards';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-
-const imgList = [img1, img1, img1, img1]
-
 export default (props: any) => {
-    let { Swidth, Sheight, loop, card } = props;
-
+    let { Swidth, Sheight, loop, card,imgList,count } = props;
+    
     return (
         <div style={{ width: Swidth, height: Sheight }}>
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                 navigation
                 // pagination={{ clickable: true }}
-                scrollbar={{ draggable: true }}
+                // scrollbar={{ draggable: false }}
 
                 // 设置一个窗口中图的个数
-                slidesPerView={3}
+                slidesPerView={count}
                 //两个图之间的距离
-                spaceBetween={40}
+                spaceBetween={20}
                 //设置卡片式轮播
                 centeredSlides={true}
                 loop={loop}
@@ -37,10 +33,10 @@ export default (props: any) => {
                 }
             >
                 {
-                    imgList.map((item, index) => {
+                    imgList.map((item:any) => {
                         return (
-                            <SwiperSlide style={{ width: 600 + 'px' }}>
-                                <img src={item} style={{ width: 100 + '%', height: Sheight }} />
+                            <SwiperSlide style={{ width: 400 + 'px' }}>
+                                <Cards title={item.title} imgSrc={item.img} height={Sheight} width={Sheight}/>
                             </SwiperSlide>
                         )
                     })

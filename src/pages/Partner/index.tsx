@@ -1,5 +1,5 @@
 import React from 'react'
-import marketing from '../../assets/img/following/img_marketing.jpg'
+import marketing from '../../assets/image/following/img_marketing.jpg'
 import '../../themes/Partner/index.scss'
 
 

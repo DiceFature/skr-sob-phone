@@ -25,9 +25,7 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
   // 关闭进度条
   NProgress.done();
-
   // 对响应数据做点什么
-  // console.log(response.data);
   return response.data;
 
 

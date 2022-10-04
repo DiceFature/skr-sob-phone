@@ -1,0 +1,96 @@
+.dev-wb-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding-top: 90px;
+    padding-bottom: 20px;
+    font-size: 14px;
+
+    .dev-wb-footer-other {
+        width: 100%;
+        height: 60px;
+        background-color: #848484;
+        box-sizing: border-box;
+
+        .dev-wb-footer-other-flex {
+            min-width: 650px;
+            height: 60px;
+            font-size: 14px;
+            color: #fff;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+
+            div p {
+                text-align: center;
+                min-width: 110px;
+                height: 60px;
+                line-height: 60px;
+                display: inline-block;
+
+                a {
+                    color: #fff;
+                }
+            }
+
+            p:hover {
+                background-color: #636262;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .dev-wb-footer-msg {
+        display: inline-block;
+        width: 100%;
+        box-sizing: border-box;
+        padding-top: 40px;
+        margin-bottom: 20px;
+
+        .dev-wb-footer-msg-row {
+            width: 80%;
+            margin: 0 auto;
+
+            .dev-wb-footer-msg-row-lt {
+                position: relative;
+                padding: 0 30px;
+                float: left;
+
+                .dev-wb-footer-msg-row-lt-a {
+                    display: inline-block;
+
+                    img {
+                        float: left;
+                    }
+
+                    span {
+                        float: left;
+                        height: 20px;
+                        line-height: 20px;
+                        color: rgb(147, 147, 147);
+                        margin-left: 5px;
+                    }
+
+                    p:after {
+                        position: absolute;
+                        top: 0;
+                        right: 10px;
+                        content: "";
+                        display: inline-block;
+                        width: 1px;
+                        height: 87px;
+                        background-color: #e5e5e5;
+                    }
+                }
+            }
+            .dev-wb-footer-msg-row-active:hover{
+                color: #40a9ff;
+            }
+
+            .dev-wb-footer-msg-row-rt {
+                display: block;
+                padding-left: 30px;
+                float: left;
+            }
+        }
+    }
+}

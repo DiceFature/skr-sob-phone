@@ -1,4 +1,4 @@
-import company from '../../assets/img/following/img_company.gif'
+import company from '../../assets/image/following/img_company.gif'
 import '../../themes/About/index.scss'
 
 const About = () => {

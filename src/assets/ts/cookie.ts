@@ -1,34 +1,21 @@
-//  保存cookie
-//  json 需要存储cookie的对象
-//  days 默认存储多少天
-export function setCookie(json:any, days:number) {
-    // 设置过期时间
-    let data = new Date(
-        new Date().getTime() + days * 24 * 60 * 60 * 1000
-    ).toUTCString();
+import cookie from 'react-cookies'
 
-    for (var key in json) {
-        document.cookie = key + "=" + json[key] + "; expires=" + data
-    }
+// 设置cookie
+export function setCookie(user:any,name:string) {
+     // 失效时间 15分钟
+    let expires = new Date(new Date().getTime() + 15 * 60 * 1000);//15分钟
+    cookie.save(name, user, { path: '/' ,expires})
 }
-
 
 // 获取cookie
 // name 需要获取cookie的key
 export function getCookie(name:string) {
-    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
-    if (arr != null) {
-        return unescape(arr[2])
-    } else {
-        return null
-    }
+    return cookie.load(name)
 }
 
 
-//  删除cookie
-//  name 需要删除cookie的key
+//  用户退出 删除cookie
 export function clearCookie(name:string) {
-    let json:any = {};
-    json[name] = '';
-    setCookie(json, -1)
+    cookie.remove(name)
+    window.location.href = '/home'
 }

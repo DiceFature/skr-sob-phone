@@ -72,7 +72,6 @@
                 top: 20%;
                 left: 50%;
                 transform: translate(-50%);
-
             }
         }
 
@@ -86,6 +85,10 @@
     background-color: #000;
     color: #fff;
     z-index: 55;
+    min-width: 1400px;
+    a{
+      color: #fff;
+    }
 
     .Had-conent {
         width: 55%;
@@ -130,9 +133,18 @@
         width: 10%;
         min-width: 150px;
         position: absolute;
-        top: 0;
+        top: -5px;
         left: 5%;
-        padding-top: 3px;
+
+        a {
+            display: inline-block;
+            height: 100%;
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
     }
 
     .utility {
@@ -202,8 +214,29 @@
                     cursor: pointer;
                     font-size: 12px;
                     font-family: ProximaNova-Regular, yg740;
-                    :hover{
+
+                    :hover {
                         color: #04bd8e;
+                    }
+                }
+            }
+
+            .right {
+                width: 50%;
+                height: 100%;
+                display: flex;
+
+                ul {
+                    flex: 1;
+                    padding: 25px 0;
+                    display: flex;
+                    overflow: hidden;
+                    li{
+                        width: 140px;
+                        display: flex;
+                        height: 100%;
+                        flex-direction: column;
+                        margin-right: 20px;
                     }
                 }
             }

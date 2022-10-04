@@ -1,0 +1,132 @@
+#event {
+    width: 100vw;
+
+
+    h1 {
+        text-align: center;
+        margin: 30px;
+        font-weight: 600;
+    }
+
+    #eventSwiper {
+        width: 1000px;
+        height: 385px;
+        margin: 0 auto;
+    }
+
+
+    #cet {
+        width: 100vw;
+        height: 187px;
+        margin-top: 50px;
+
+        #section {
+            display: flex;
+            margin: 20px auto;
+            width: 1000px;
+            height: 187px;
+
+            #sec_lt {
+                width: 600px;
+                height: 187px;
+                // background-color: antiquewhite;
+
+                h2 {
+                    border-bottom: 2px solid black;
+                    height: 39px;
+                    color: blueviolet;
+                }
+
+                #sec_lt_down {
+                    text-align: center;
+                    width: 100%;
+                    height: 157px;
+
+                    p {
+                        font-size: 20px;
+                        color: cadetblue;
+                    }
+
+                    #btn {
+                        margin-top: 20px;
+                        width: 120px;
+                        height: 40px;
+                        color: #fff;
+                        background-color: black;
+                        border: none;
+                    }
+                }
+            }
+
+            #sec_rt {
+                margin-left: 40px;
+                width: 600px;
+                height: 187px;
+
+                ul {
+                    display: flex;
+
+                    li {
+                        text-align: center;
+                        border-left: 2px solid #ccc;
+                        width: 150px;
+                        height: 145px;
+
+                        img {
+                            width: 94px;
+                            height: 145px;
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+
+
+    #textContainer {
+        width: 100vw;
+        text-align: center;
+        margin-top: 50px;
+
+        #text {
+            display: flex;
+            margin: 0 auto;
+            width: 1000px;
+            height: 255px;
+            // background-color: blanchedalmond;
+
+            #title {
+                width: 246px;
+                height: 255px;
+                background-color: cadetblue;
+                line-height: 255px;
+
+                h2 {
+                    color: blueviolet;
+                }
+            }
+
+            #main {
+                width: 783px;
+                height: 255px;
+                background-color: aquamarine;
+
+                a {
+                    margin: 5px;
+                    display: inline-block;
+                    height: 40px;
+                    line-height: 40px;
+                    padding: 2px 5px;
+                    border: 1px solid #ccc;
+                    background-color: cornsilk;
+                    border-radius: 10px;
+                }
+            }
+
+        }
+    }
+
+
+}

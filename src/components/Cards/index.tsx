@@ -1,5 +1,6 @@
 import { Card } from 'antd';
 import React from 'react';
+import './index.scss'
 
 const { Meta } = Card;
 interface Prop{
@@ -9,7 +10,7 @@ interface Prop{
   description?:string,
   imgSrc?:string,
 }
-const Cards: React.FC<any> = ({width=240,height=390,title="Europe Street beat",description="www.instagram.com",imgSrc="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"}:Prop) => (
+const Cards: React.FC<any> = ({width=240,height=390,title,description="www.instagram.com",imgSrc="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"}:Prop) => (
   <Card
     hoverable
     style={{ width,height }}

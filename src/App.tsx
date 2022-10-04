@@ -2,8 +2,10 @@ import React,{
   useEffect,
   useState
 } from 'react';
+// 引入antd-css
 
-import { useRoutes,useLocation } from 'react-router-dom';
+
+import { useRoutes, useLocation } from 'react-router-dom';
 // 引入路由表
 import MyRouter from 'router';
 // 设置cookie
@@ -14,22 +16,22 @@ import Loading from 'components/Loading';
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Footer from './components/Footer/index';
-
-
+import Aside from 'components/Aside';
 import Nav from 'components/Nav';
 
 function App() {
   const location = useLocation();
-  const [offLoad,setoffLoad] = useState<boolean>(true);
+  const [offLoad, setoffLoad] = useState<boolean>(true);
 
   // 路由监听
   useEffect(() => {
-    let setLoad = setTimeout(()=>{
+    let setLoad = setTimeout(() => {
       NProgress.done() // 关闭进度条
       setoffLoad(false)
-    },800);
-    return ()=>{
+    }, 800);
+    return () => {
       // 销毁组件清除定时器，其实就是切换路由的时候
+      setoffLoad(true) // 开启遮罩层
       clearTimeout(setLoad)
     }
   }, [location]);
@@ -38,6 +40,7 @@ function App() {
     <div >
       <Nav></Nav>
         <MyRouter/>
+        <Aside/>
       <Footer></Footer>
       {offLoad?<Loading/>:''}
     </div>

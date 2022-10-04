@@ -1,5 +1,6 @@
-import { lazy,Suspense } from "react";
-import { Navigate,Routes,Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Navigate, Routes, Route } from "react-router-dom";
+import { message } from 'antd';
 
 // 引入获取cookie的工具ts函数
 import { getCookie } from 'assets/ts/cookie';
@@ -23,164 +24,175 @@ const lazyLoad = (moduleName: string) => {
 
 // 路由鉴权组件
 const Appraisal = ({ children }: any) => {
-    if (!getCookie("login")) {
+    if (!getCookie("userName")) {
+        message.warning('请先登录~');
         return <Navigate to="/login" replace />;
-    }else{
+    } else {
         return children
     }
 
 };
-  
+
 
 interface Router {
     path: string, // 路由路径
     children?: Array<Router>,  // 子路由
     element: any, // 路由页面
-    auth?:boolean // 需要路由鉴权
+    auth?: boolean // 需要路由鉴权
 }
 
 const routes: Array<Router> = [
     // 主页
     {
         path: '/home',
-        element:<Home></Home>,
+        element: <Home></Home>,
     },
     // 登录页
     {
         path: '/login',
-        element:lazyLoad("Login"),
+        element: lazyLoad("Login"),
     },
     // 注册页
     {
-        path: '/signup',
-        element:lazyLoad('Home')
+        path: '/register',
+        element: lazyLoad('Register')
+    },
+    // 商品详情
+    {
+        path: '/details/:spu_id',
+        element: lazyLoad('Details')
     },
     // 一级分类页
     {
-        path: '/primary',
-        element:lazyLoad('Home')
+        path: '/primary/:title',
+        element: lazyLoad('Home')
     },
     // 独家
     {
         path: '/exclusive',
-        element:lazyLoad('Home')
+        element: lazyLoad('Exclusive')
     },
     // WDNA(3D轮播图)
     {
         path: '/wdna',
-        element:lazyLoad('Home')
+        element: lazyLoad('Home')
     },
     // Event
     {
         path: '/event',
-        element:lazyLoad('Home')
+        element: lazyLoad('Event')
     },
     // Best
     {
         path: '/best',
-        element:lazyLoad('Home')
+        element: lazyLoad('Home')
     },
     // 个人中心(需要登陆)
     {
         path: '/mypage',
-        element:lazyLoad('Mypage'),
-        auth:true
+        element: lazyLoad('Mypage'),
+        auth: true
     },
     // 购物车(需要登陆)
     {
         path: '/shopcar',
-        element:lazyLoad('Mypage'),
-        auth:true
+        element: lazyLoad('Mypage'),
+        auth: true
     },
     // 二级数据
     {
         path: '/secondary',
-        element:lazyLoad('Home')
+        element: lazyLoad('Home')
     },
     // 搜索
     {
         path: '/search',
-        element:lazyLoad('Search'),
-        children:[
+        element: lazyLoad('Search'),
+        children: [
             {
-                path:'product',
-                element:lazyLoad('Product')
+                path: 'product',
+                element: lazyLoad('Product')
             },
             {
-                path:'activity',
-                element:lazyLoad('Activity')
+                path: 'activity',
+                element: lazyLoad('Activity')
             },
             {
-                path:'show',
-                element:lazyLoad('Show')
+                path: 'show',
+                element: lazyLoad('Show')
             },
             {
-                path:'/search',
-                element:<Navigate to="/search/product"></Navigate>
+                path: '/search',
+                element: <Navigate to="/search/product"></Navigate>
             }
         ]
     },
     // 底部路由跳转
     {
-        path:'/about', // 关于我们
-        element:lazyLoad('About')
+        path: '/about', // 关于我们
+        element: lazyLoad('About')
     },
     {
-        path:'/advisory', // 咨询服务
-        element:lazyLoad('Home')
+        path: '/advisory', // 咨询服务
+        element: lazyLoad('Home')
     },
     {
-        path:'/partner', // 合作伙伴查询
-        element:lazyLoad('Partner')
+        path: '/partner', // 合作伙伴查询
+        element: lazyLoad('Partner')
     },
     {
-        path:'/terms', // 服务条款
-        element:lazyLoad('Home')
+        path: '/terms', // 服务条款
+        element: lazyLoad('Terms')
     },
     {
-        path:'/privacy', // 隐私政策
-        element:lazyLoad('Home')
+        path: '/privacy', // 隐私政策
+        element: lazyLoad('PrivacyPolicy')
     },
     {
-        path:'/serviceCenter', // 服务中心
-        element:lazyLoad('Home')
+        path: '/serviceCenter', // 服务中心
+        element: lazyLoad('ServiceCenter')
     },
     {
-        path:'/offers', // 招聘信息
-        element:lazyLoad('Offter')
+        path: '/offers', // 招聘信息
+        element: lazyLoad('Offter')
     },
     {
-        path:'/',
-        element:<Navigate to="/home"></Navigate>
+        path: '/global', // 全球的
+        element: <NotFound />,
+    },
+    {
+        path: '/',
+        element: <Navigate to="/home"></Navigate>
     },
     {
         path: '*',
-        element:<NotFound/>,
+        element: <NotFound />,
     },
 ];
 
-const MyRouter =()=>{
+const MyRouter = () => {
     return (
-        <Suspense fallback={<Loading/>}> 
+        <Suspense fallback={<Loading />}>
             <Routes>
                 {
-                    routes.map((item,index)=>{
+                    routes.map((item, index) => {
                         if (item.auth) {
                             return <Route key={index} path={item.path} element={<Appraisal>{item.element}</Appraisal>}></Route>
                         }
-                        return (item.children ? 
+                        return (item.children ?
                             <Route key={index} path={item.path} element={item.element}>
                                 {
-                                    item.children.map((e,i)=>
-                                        <Route key={i} path={e.path} element={e.element}/>
+                                    item.children.map((e, i) =>
+                                        <Route key={i} path={e.path} element={e.element} />
                                     )
                                 }
-                            </Route>:
+                            </Route> :
                             <Route key={index} path={item.path} element={item.element}></Route>
-                    )})
+                        )
+                    })
                 }
             </Routes>
-        </Suspense>     
+        </Suspense>
     )
 }
 

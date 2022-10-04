@@ -9,8 +9,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 
-export default  (props) => {
-  let { Swidth, Sheight,loop,imgList } = props;
+export default (props) => {
+  let { Swidth, Sheight, loop, imgList } = props;
+  console.log(imgList);
   return (
     <div style={{ width: Swidth, height: Sheight }}>
       <Swiper
@@ -21,18 +22,25 @@ export default  (props) => {
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
+        onAutoplay={{ onAutoplay: true }}
       >
-      {
-        imgList.map((item, index) => {
-          return (
-            <SwiperSlide>
-              <img src={item.swiperImg} style={{ width: 100 + '%', height: Sheight }} />
-            </SwiperSlide>
-          )
-        })
-      }
-    </Swiper>
+        {
+          imgList.map((item, index) => {
+            // 处理图片文件不同
+            let imgs;
+            if (item.img) {
+              imgs = item.img;
+            } else if (item.swiperImg) {
+              imgs = item.swiperImg;
+            }
+            return (
+              <SwiperSlide >
+                <img src={imgs} style={{ width: 100 + '%', height: Sheight }} />
+              </SwiperSlide>
+            )
+          })
+        }
+      </Swiper>
     </div >
   );
 };

@@ -48,10 +48,13 @@ body {
 }
 
 a {
-  color: $color-text;
+  color: #666;
   text-decoration: none;
 }
-
+p{
+  padding-top: 0px;
+  margin-bottom: 0px;
+}
 li {
   list-style: none;
 }
