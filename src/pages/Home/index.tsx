@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Tabs } from 'antd';
-import SwiperHreader from '../../components/Swiper';
+import SwiperHreader from '../../components/swiper';
 import SwiperList from '../../components/SwiperCard';
 import instance from '../../Api/request'
 import Cards from '../../components/Cards';

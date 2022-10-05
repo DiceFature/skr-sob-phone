@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './event.scss'
-import Swiper from '../../components/Swiper'
+import Swiper from '../../components/swiper'
 import { getSwiper } from 'Api/api'
 import E1 from '../../assets/image/event/E1.png'
 import E2 from '../../assets/image/event/E2.jpg'
