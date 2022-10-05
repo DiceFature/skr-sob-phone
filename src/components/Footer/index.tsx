@@ -10,7 +10,7 @@ const Footer = () => {
     <div className="footer">
      <div className="footerNav">
      <li><NavLink to='/about'>关于我们</NavLink></li>
-     <li><NavLink to="/">咨询服务</NavLink></li>
+     <li><NavLink to="/advisory">咨询服务</NavLink></li>
      <li><NavLink to="/partner">合租伙伴查询</NavLink></li>
      <li><NavLink to="/terms">服务条款</NavLink></li>
      <li><NavLink to="/serviceCenter">隐私政策</NavLink></li>

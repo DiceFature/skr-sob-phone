@@ -134,7 +134,7 @@ const routes: Array<Router> = [
     },
     {
         path: '/advisory', // 咨询服务
-        element: lazyLoad('Home')
+        element: lazyLoad('Advisory')
     },
     {
         path: '/partner', // 合作伙伴查询

@@ -16,7 +16,7 @@ import Loading from 'components/Loading';
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Footer from './components/Footer/index';
-import Aside from 'components/Aside';
+import Aside from './components/aside';
 import Nav from 'components/Nav';
 
 function App() {

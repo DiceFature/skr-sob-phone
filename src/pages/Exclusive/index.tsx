@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { getSwiper, getImg } from '../../Api/api'
 import './exclusive.scss'
-import Swiper from '../../components/Swiper'
+import Swiper from '../../components/swiper'
 import { NavLink } from 'react-router-dom'
 
 
