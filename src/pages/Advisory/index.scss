@@ -1,10 +1,6 @@
-// body,html{
-//     margin: 0;
-//     padding: 0;
-// }
 .fl-q-advisory{
     width: 100%;
-    height: 2183px;
+    height: 100%;
     padding-top: 81px;
     text-align: center;
     margin: 0px auto;
@@ -234,42 +230,8 @@
          .fl-q-advisory-context-fromMain-r{
             //  position: absolute;
             //  left: 440px;
-           position: relative;
-           left: -208px;
-            #fl-q-advisory-context-fromMain-r-check{
-             visibility: hidden;
- 
-            }
-            #fl-q-advisory-context-fromMain-r-check+label{
-                background-color: white;
-                border-radius: 50px;
-                border: 1px solid #eee;
-                width: 20px;
-                height: 20px;
-                display: inline-block;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 20px;
-            }
-            #fl-q-advisory-context-fromMain-r-check+label:hover{
-                border: 1px solid #1890ff;
-            }
-            #fl-q-advisory-context-fromMain-r-check:checked + label{
-                background-color: #fff;
-            }
-            #fl-q-advisory-context-fromMain-r-check:checked + label:after{
-                content: "";
-                border-radius: 50px;
-                left: 3.5px;
-                position: absolute;
-                background: #1890ff;
-                border: #fff solid 2px;
-                height: 16px;
-                width: 16px;
-            }
-            #fl-q-advisory-context-fromMain-r-check:checked + label:after{
-                content: "\2713";
-            }
+            position: relative;
+            left: -208px;
          }
          .fl-q-advisory-context-fromMain-r-1{
             left: 392px;
