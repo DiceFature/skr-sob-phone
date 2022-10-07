@@ -9,11 +9,12 @@ import './index.scss'
 import { ShopImg } from 'Api/bestShop'
 
 function Best() {
-	let [kind, setKind]: any = useState(null)
+	// 商品分类
+	let classify: string[] = ['All', '鞋类', '服饰', '配件', '儿童专区']
+
+	// 切换渲染的头部组件
 	let [useComponent, setComponent]: any = useState('')
 	let component: any[] = ['', <Shose></Shose>, <Clothes></Clothes>, <Parts></Parts>, <Children></Children>]
-	let classify: string[] = ['All', '鞋类', '服饰', '配件', '儿童专区']
-	let [allImg, setAllImg]: any = useState()
 	const changeClass = (cla: string, index: number) => {
 		setComponent(component[index])
 		if (cla === 'All') {
@@ -23,6 +24,9 @@ function Best() {
 		}
 	}
 
+	// 切换渲染的数据
+	let [allImg, setAllImg]: any = useState()
+	let [kind, setKind]: any = useState(null)
 	useEffect(() => {
 		if (kind !== null) {
 			let obj = {
@@ -30,7 +34,7 @@ function Best() {
 				end: 99
 			}
 			ShopImg(obj).then((data: any) => {
-				console.log(data);
+				// console.log(data);
 				setAllImg(data)
 			})
 		} else {
@@ -53,7 +57,7 @@ function Best() {
 	// 跳转详情页
 	let navigate = useNavigate()
 	const goDetail = (id: number) => {
-		navigate('/details', { state: { id } })
+		navigate(`/details/${id}`)
 	}
 
 	return (
@@ -73,6 +77,11 @@ function Best() {
 			{useComponent}
 			{
 				kind ? <div className='child'>
+					<select>
+						<option>日常的</option>
+						<option>每周</option>
+						<option>每月一次</option>
+					</select>
 					<div className='child-hot'>
 						<ul className='child-hot-top'>
 							{
@@ -89,7 +98,7 @@ function Best() {
 												<div className="textMax">
 													<div className="text_wrap">
 														<div className="brand">LOEUVRE</div>
-														<div className="front"> [펜트하우스 이지아,강민경,효민,류이서,보라끌레르 착용] | [04/16 예약배송] </div>
+														<div className="front"> {shop.title} </div>
 														<div className="product"> Sac de Trompette Small FA0SB013-10 </div>
 													</div>
 													<div className="price">
@@ -122,7 +131,7 @@ function Best() {
 												<div className="textMax">
 													<div className="text_wrap">
 														<div className="brand">vunque</div>
-														<div className="front"> [댓글 이벤트] | [04/16 예약배송] </div>
+														<div className="front"> {shop.title} </div>
 														<div className="product"> Toque tote S (토크 토트 스몰) Light beige </div>
 													</div>
 													<div className="price">
@@ -150,8 +159,8 @@ function Best() {
 											<div className="textMax">
 												<div className="text_wrap">
 													<div className="brand">Dunst for WOMEN</div>
-													<div className="front">[04/23 예약배송]</div>
-													<div className="product"> HALF-SLEEVES BELTED SUMMER-WOOL JACKET SOFT GREIGE_UDJA1E211G1 </div>
+													<div className="front"> {shop.title} </div>
+													<div className="product">[04/23 예약배송]</div>
 												</div>
 												<div className="price">
 													<span className="discount_price">{shop.price}</span>

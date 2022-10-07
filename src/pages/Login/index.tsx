@@ -39,11 +39,14 @@ import { setCookie,getCookie } from '../../assets/ts/cookie';
         hide()// 取消登陆中msg
         setCookie(res.data,'userinfo');// 保存用户cookie，默认持续时间15分钟
         // 判断是否是记住密码
-        if (remember) setCookie(username,'userName');
         message.success('登陆成功,祝您购物愉快😍');
+        if (remember) setCookie(username,'userName');
       } 
     }).then(()=>{
-      navigate('/home')
+      // navigate('/home')
+      setTimeout(()=>{
+        window.location.href = '/home'
+      },200)
     })
   }
 

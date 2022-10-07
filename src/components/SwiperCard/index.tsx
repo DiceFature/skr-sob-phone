@@ -1,15 +1,17 @@
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { NavLink } from 'react-router-dom';
 import Cards from 'components/Cards';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+
 export default (props: any) => {
-    let { Swidth, Sheight, loop, card,imgList,count } = props;
-    
+    let { Swidth, Sheight, loop, card, imgList, count } = props;
+
     return (
         <div style={{ width: Swidth, height: Sheight }}>
             <Swiper
@@ -22,8 +24,8 @@ export default (props: any) => {
                 slidesPerView={count}
                 //两个图之间的距离
                 spaceBetween={20}
+                centeredSlides= {true}
                 //设置卡片式轮播
-                centeredSlides={true}
                 loop={loop}
                 pagination={
                     {
@@ -33,10 +35,12 @@ export default (props: any) => {
                 }
             >
                 {
-                    imgList.map((item:any) => {
+                    imgList.map((item: any) => {
                         return (
                             <SwiperSlide style={{ width: 400 + 'px' }}>
-                                <Cards title={item.title} imgSrc={item.img} height={Sheight} width={Sheight}/>
+                                <NavLink to={`/details/${item.id}`}>
+                                    <Cards title={item.title} imgSrc={item.img} height={Sheight} width={Sheight} />
+                                </NavLink>
                             </SwiperSlide>
                         )
                     })

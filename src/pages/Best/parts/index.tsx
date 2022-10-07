@@ -1,4 +1,3 @@
-import Select from '../select'
 function Parts() {
 	
 	return (
@@ -12,7 +11,6 @@ function Parts() {
 				<li><span>PEL</span></li>
 				<li><span>GOODS</span></li>
 			</ul>
-			<Select />
 		</div>
 	)
 }

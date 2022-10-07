@@ -1,15 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, memo } from 'react'
 import '../../themes/Aside/index.scss'
 import { Drawer, Space } from 'antd';
 import type { DrawerProps } from 'antd/es/drawer';
 import 'antd/dist/antd.css';
-
+import { Button } from 'antd';
+import { useSelector, useDispatch } from "react-redux";
+import { getShopCar } from '../../redux/actions/shopCar';
+import { getCookie } from '../../assets/ts/cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Aside = () => {
-
     const [size, setSize] = useState<DrawerProps['size']>();
     const [open, setOpen] = useState(false);
     const [open1, setOpen1] = useState(false);
+    // 获取购物车列表
+    const shopCar = useSelector((state:any) => state.shopCar)||[];
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    
     const showDrawer = () => {
         setOpen(true);
     };
@@ -24,8 +33,6 @@ const Aside = () => {
     const onClose1 = () => {
         setOpen1(false);
     };
-
-
 
     let Top = useRef<HTMLLIElement>(null);
     let Buttom = useRef<HTMLLIElement>(null);
@@ -53,16 +60,44 @@ const Aside = () => {
     }
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
+        if (getCookie('userinfo')) {
+            let {id} = getCookie('userinfo').userInfo
+            // customer_id:25
+            dispatch<any>(getShopCar({customer_id:id}));
+        }
     }, [])
 
-    const backTop = () => {
-        document.documentElement.scrollTop = 0  //滚动条滚动高度 
+
+    function ScrollTo(newT :any) {
+        let scrollToptimer = setInterval(function () {
+            // 拿到导航条的高度
+            let newtarget:any = document.body.scrollTop || document.documentElement.scrollTop;
+            var speed = newtarget / 50;
+            newT.scrollTop -= speed;
+            if (newtarget == 0) {
+                clearInterval(scrollToptimer);
+            }
+        }, 5);
+    }
+    function ScrollDown(newT :any) {
+        let scrollToptimer = setInterval(function () {
+            // 拿到导航条的高度
+            let newtarget:any = document.body.scrollTop || document.documentElement.scrollTop;
+            var speed = newtarget / 70;
+            newT.scrollTop += speed;
+            if (newtarget == newT.scrollTop) {
+                clearInterval(scrollToptimer);
+            }
+        }, 5);
+    }
+    let newT:any= document.documentElement //滚动条
+    let backTop = () => {
+        ScrollTo(newT)
     }
 
-    const backDown = () => {
-        document.documentElement.scrollTop = document.documentElement.scrollHeight  //滚动条滚动高度 
+    let backDown=()=>{
+        ScrollDown(newT)
     }
-
 
     return (
         <div id='aside'>
@@ -74,16 +109,36 @@ const Aside = () => {
             </ul>
 
             <Drawer
-                headerStyle={{ backgroundColor: 'khaki' }}
+                headerStyle={{ backgroundColor: '#dfdfdf' }}
                 title="购物车" placement="right" onClose={onClose} open={open}>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+                <div className='navShopCar'>
+                    <p>共有{shopCar.length}件宝贝</p>
+                    <Button onClick={()=>navigate('/shopcar')} type="primary" size="small" style={{backgroundColor:"#afafaf",borderColor:"#afafaf"}}>管理</Button>
+                </div>
+                <ul className='navShopCar-ul'>
+                    {
+                        shopCar.map((ele:any,index:number)=>{
+                            return <li key={index}>
+                                <div className="nav-left">
+                                    <img src={ele.img} alt="" />
+                                </div>
+                                <div className="nav-right">
+                                    <p>{ele.title}</p>
+                                    <p>数量:{ele.num}</p>
+                                    <div>
+                                        <span>￥{ele.special_price}</span>
+                                        <span>￥{ele.price}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        })
+                    }
+                </ul>
             </Drawer>
 
             <div style={{ height: '300px', width: '500px' }}>
                 <Drawer
-                    headerStyle={{ backgroundColor: 'khaki' }}
+                    headerStyle={{ backgroundColor: '#dfdfdf' }}
                     title={'聊天栏'}
                     placement="right"
                     size={size}
@@ -99,4 +154,4 @@ const Aside = () => {
         </div >
     )
 }
-export default Aside;
+export default memo(Aside);

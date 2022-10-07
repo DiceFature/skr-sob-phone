@@ -1,17 +1,18 @@
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { NavLink } from 'react-router-dom';
+import SwiperCore, { Autoplay } from 'swiper/core';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import 'swiper/css/pagination'; 
 import 'swiper/css/scrollbar';
 
 
-export default (props) => {
+export default(props) => {
+  SwiperCore.use([Autoplay]);
   let { Swidth, Sheight, loop, imgList } = props;
-  console.log(imgList);
   return (
     <div style={{ width: Swidth, height: Sheight }}>
       <Swiper
@@ -20,12 +21,15 @@ export default (props) => {
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={0}
         slidesPerView={1}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: true,
+        }}
         navigation
         pagination={{ clickable: true }}
-        onAutoplay={{ onAutoplay: true }}
       >
         {
-          imgList.map((item, index) => {
+          imgList.map((item) => {
             // 处理图片文件不同
             let imgs;
             if (item.img) {
@@ -35,7 +39,9 @@ export default (props) => {
             }
             return (
               <SwiperSlide >
+                <NavLink to={`/detail/${item.id}`}>
                 <img src={imgs} style={{ width: 100 + '%', height: Sheight }} />
+                </NavLink>
               </SwiperSlide>
             )
           })

@@ -1,4 +1,3 @@
-import Select from '../select'
 function Children() {
 	
 	return (
@@ -11,7 +10,6 @@ function Children() {
 				<li><span>INNER BEAUTY</span></li>
 				<li><span>FOR MEN</span></li>
 			</ul>
-			<Select />
 		</div>
 	)
 }

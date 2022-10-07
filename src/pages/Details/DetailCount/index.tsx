@@ -13,7 +13,7 @@ function DetailCount({ imges }: any) {
           var target = e.target
           if (target.nodeName === 'LI') {
             let number = target.value;
-            console.log(arr[number].offsetTop)
+            // console.log(arr[number].offsetTop)
             document.documentElement.scrollTop = arr[number].offsetTop-100
           }
         })

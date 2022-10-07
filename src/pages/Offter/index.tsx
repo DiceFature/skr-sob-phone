@@ -12,7 +12,6 @@ import {
   Divider,
 } from 'antd';
 import './index.scss'
-import 'antd/dist/antd.css'
 const { Step } = Steps;
 const { Option } = Select;
 const { RangePicker } = DatePicker;

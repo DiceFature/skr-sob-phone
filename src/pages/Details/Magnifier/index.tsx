@@ -1,9 +1,12 @@
 import React, { Fragment, useEffect, useRef } from 'react'
 import { Select, InputNumber, message } from 'antd'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet,useNavigate } from 'react-router-dom'
 import 'antd/dist/antd.css';
-const { Option } = Select;
+import { getCookie } from 'assets/ts/cookie';
+import { useSelector, useDispatch } from "react-redux";
+import { addShop } from '../../../redux/actions/shopCar';
 
+const { Option } = Select;
 interface obj {
     size: string | null,
     quantity: number | null, 
@@ -83,9 +86,9 @@ function Magnifier({ data, imges }: any) {
         if (ulbox1) {
             ulbox1.addEventListener('click', function (e: any) {
                 var target = e.target
-                console.log(target);
+                // console.log(target);
                 if (target.nodeName === 'IMG') {
-                    console.log(target);
+                    // console.log(target);
                     imgsmall.src = target.src
                     imgbig.src = target.src
                 }
@@ -110,15 +113,63 @@ function Magnifier({ data, imges }: any) {
 
     }, [data])
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     function shopbuy() {
-        //判断token 
-        // if(!token){
-        // message.info('检测到您未登录，请先登录')
-        // }
-        if(objdata.style){
+        if(!objdata.style){
             message.info('请先选着款式！')
+            return
         }
+        //判断token 
+        if(getCookie('userinfo')){
+            // 登录状态
+            //#region 
+            // {
+            //   customer_id  int
+            //   sku_id	      int
+            //   num	      int
+            //   params	      varchar
+            // }
+            //#endregion
+        //    console.log(objdata);
+            let {userInfo:{id}} = getCookie('userinfo')
+        //    console.log(getCookie('userinfo'));
+            message.success('添加成功🤩');
+            dispatch<any>(addShop({
+                customer_id:id,
+                sku_id:objdata.id,
+                num:objdata.quantity,
+                params:[objdata.style,objdata.size]
+            }));
+        }else{
+            navigate('/login')
+        }
+
+    }
+
+    // 立即购买跳转支付页面
+    function shopbuyGo() {
+        if(!objdata.style){
+            message.info('请先选着款式！')
+            return
+        } 
+        // console.log(data[0]);
+        
+        navigate('/PayTotal',{
+            replace:false, //跳转模式
+            state:[
+                 {
+                    "id": objdata.id,
+                    "num": objdata.quantity,
+                    "params": JSON.stringify([objdata.style,objdata.size]),
+                    "special_price": data[0].special_price,
+                    "img": JSON.parse(data[0].imgs)[0].small,
+                    "title": data[0].title,
+                    "price": data[0].price
+                }
+            ]
+        })
     }
 
     function selectvalue(num: any) {
@@ -131,7 +182,7 @@ function Magnifier({ data, imges }: any) {
         objdata.style = e.target.title
         objdata.id = data[0].id
         objdata.spu_id =data[0].spu_id
-        console.log(objdata);
+        // console.log(objdata);
     }
     return (
         <div className='details-magnifier'>
@@ -190,8 +241,8 @@ function Magnifier({ data, imges }: any) {
                                     </section>
                                 </div>
                                 <div className='details-magnifier-right-down'>
-                                    <NavLink to='/shopCar' state={data}><span className="down-a" onClick={shopbuy}>加入购物车</span></NavLink>
-                                    <NavLink to='/payTotal' state={data}><span className="down-b" onClick={shopbuy}>立即购买</span></NavLink>
+                                    <div><span className="down-a" onClick={shopbuy}>加入购物车</span></div>
+                                    <div><span className="down-b" onClick={shopbuyGo}>立即购买</span></div>
                                 </div>
                             </div>
                             <Outlet />

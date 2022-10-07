@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Tabs } from 'antd';
-import SwiperHreader from '../../components/swiper';
+import {NavLink} from 'react-router-dom'
+import SwiperHreader from '../../components/Swiper';
 import SwiperList from '../../components/SwiperCard';
 import instance from '../../Api/request'
 import Cards from '../../components/Cards';
 import '../../themes/Home/index.scss'
 import { getTypeTwoList, getTypeTwoListGoods } from '../../Api/api'
-import { NavLink } from 'react-router-dom';
-
-
+import Deliveryarea from 'components/Deliveryarea';
 
 
 const Home = () => {
@@ -94,7 +93,7 @@ const Home = () => {
     return (tabGoods.map((item: any, index: number) => {
       if (index < 5) {
         return (
-          <li key={index}><Cards title={item.title} imgSrc={item.img} width={234} height={388}></Cards></li>
+          <li key={item.id}><Cards title={item.title} imgSrc={item.img} width={234} height={388}></Cards></li>
         )
       }
     })
@@ -102,8 +101,9 @@ const Home = () => {
   }
   return (
     <div style={{ minWidth: "1400px" }}>
+      <Deliveryarea/>
       <div className='SwiperHreader' >
-        <SwiperHreader imgList={imgList} />
+        <SwiperHreader imgList={imgList} loop={true} />
       </div>
       <div className='title'>
         <p>Basketball shoes</p>
@@ -115,12 +115,11 @@ const Home = () => {
               return (
                 <li key={index}>
                   <NavLink to={`/details/${item.id}`}>
-                    <Cards title={item.title} imgSrc={item.img} width={356} height={460}></Cards>
+                    <Cards title={item.title} imgSrc={item.img} width={356} height={460} description={`COST:￥${item.price}`}></Cards>
                   </NavLink>
                 </li>
               )
             }
-
           })
         }
       </ul>
@@ -143,11 +142,11 @@ const Home = () => {
         <SwiperList imgList={secondLan} Sheight={670} count={2} />
       </div>
       <ul className="AnCard">
-        {
+        { 
           secondLan.map((item, index) => {
             if (index < 8) {
               return (
-                <li key={index}><Cards title={item.title} imgSrc={item.img} width={172} height={278}></Cards></li>
+                <li key={index}><NavLink to={`/details/${item.id}`}><Cards title={item.title} imgSrc={item.img} width={172} height={278} description={`COST:￥${item.price}`}></Cards></NavLink></li>
               )
             }
 
@@ -167,7 +166,7 @@ const Home = () => {
               secondLan.map((item, index) => {
                 if (index < 8) {
                   return (
-                    <li key={index}><Cards title={item.title} imgSrc={item.img} width={172} height={278}></Cards></li>
+                    <li key={index}><NavLink to={`/detail/${item.id}`}><Cards title={item.title} imgSrc={item.img} width={172} height={278} description={`COST:￥${item.price}`}></Cards></NavLink></li>
                   )
                 }
 
@@ -191,7 +190,7 @@ const Home = () => {
             dataXie.map((item: any, index: number) => {
               if (index < 7) {
                 return (
-                  <li key={index}><Cards title={item.title} imgSrc={item.img} width={179} height={280}></Cards></li>
+                  <li key={index}><NavLink to={`/details/${item.id}`}><Cards title={item.title} imgSrc={item.img} width={179} height={280} description={`COST:￥${item.price}`}></Cards></NavLink></li>
                 )
               }
             })
@@ -210,7 +209,7 @@ const Home = () => {
             dataFu.map((item: any, index: number) => {
               if (index < 7) {
                 return (
-                  <li key={index}><Cards title={item.title} imgSrc={item.img} width={179} height={280}></Cards></li>
+                  <li key={index}><NavLink to={`/details/${item.id}`}><Cards title={item.title} imgSrc={item.img} width={179} height={280} description={`COST:￥${item.price}`}></Cards></NavLink></li>
                 )
               }
             })
@@ -229,7 +228,7 @@ const Home = () => {
             dataPei.map((item: any, index: number) => {
               if (index < 7) {
                 return (
-                  <li key={index}><Cards title={item.title} imgSrc={item.img} width={179} height={280}></Cards></li>
+                  <li key={index}><NavLink to={`/details/${item.id}`}><Cards title={item.title} imgSrc={item.img} width={179} height={280} description={`COST:￥${item.price}`}></Cards></NavLink></li>
                 )
               }
             })
@@ -248,7 +247,7 @@ const Home = () => {
             dataTong.map((item: any, index: number) => {
               if (index < 7) {
                 return (
-                  <li key={index}><Cards title={item.title} imgSrc={item.img} width={179} height={280}></Cards></li>
+                  <li key={index}><NavLink to={`/details/${item.id}`}><Cards title={item.title} imgSrc={item.img} width={179} height={280} description={`COST:￥${item.price}`}></Cards></NavLink></li>
                 )
               }
             })
@@ -318,6 +317,7 @@ const Home = () => {
                 defaultActiveKey="1"
                 size={'large'}
                 tabBarGutter={40}
+
                 animated={true}
                 items={[
                   {

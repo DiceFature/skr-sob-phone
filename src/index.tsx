@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 // antd全局样式
 import 'antd/dist/antd.min.css';
+
 // 全局样式
 import 'themes/all.scss'
 import { BrowserRouter } from 'react-router-dom';

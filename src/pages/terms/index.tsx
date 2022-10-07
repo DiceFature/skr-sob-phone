@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.scss'
-export default function Terms() {
+const Terms:React.FC =() => {
   return (
     <div className='dev-wb'>
       <div className='dev-wb-terms'>
@@ -164,3 +164,4 @@ export default function Terms() {
     </div>
   )
 }
+export default Terms

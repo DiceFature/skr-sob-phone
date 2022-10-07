@@ -5,10 +5,11 @@ import { message } from 'antd';
 // 引入获取cookie的工具ts函数
 import { getCookie } from 'assets/ts/cookie';
 
+import OrderDetail from "pages/OrderDetail";
 import Home from '../pages/Home'; // 首页
 import NotFound from '../pages/404/index'; // 404 错误页面
 import Loading from "components/Loading";
-
+import Primary from "pages/Primary";//分类页
 // 进度条加载
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -24,7 +25,7 @@ const lazyLoad = (moduleName: string) => {
 
 // 路由鉴权组件
 const Appraisal = ({ children }: any) => {
-    if (!getCookie("userName")) {
+    if (!getCookie("userinfo")) {
         message.warning('请先登录~');
         return <Navigate to="/login" replace />;
     } else {
@@ -46,6 +47,11 @@ const routes: Array<Router> = [
     {
         path: '/home',
         element: <Home></Home>,
+
+    },
+    {
+        path: '/orderDetail',
+        element: <OrderDetail />,
     },
     // 登录页
     {
@@ -65,7 +71,7 @@ const routes: Array<Router> = [
     // 一级分类页
     {
         path: '/primary/:title',
-        element: lazyLoad('Home')
+        element: lazyLoad('Primary')
     },
     // 独家
     {
@@ -75,7 +81,7 @@ const routes: Array<Router> = [
     // WDNA(3D轮播图)
     {
         path: '/wdna',
-        element: lazyLoad('Home')
+        element: lazyLoad('Wdna')
     },
     // Event
     {
@@ -85,7 +91,8 @@ const routes: Array<Router> = [
     // Best
     {
         path: '/best',
-        element: lazyLoad('Home')
+        element: lazyLoad('Best')
+
     },
     // 个人中心(需要登陆)
     {
@@ -96,13 +103,19 @@ const routes: Array<Router> = [
     // 购物车(需要登陆)
     {
         path: '/shopcar',
-        element: lazyLoad('Mypage'),
+        element: lazyLoad('ShopCar'),
         auth: true
+    },
+    //提交订单
+    {
+        path: '/payTotal',
+        element: lazyLoad('PayTotal'),
+        auth:true
     },
     // 二级数据
     {
-        path: '/secondary',
-        element: lazyLoad('Home')
+        path: '/secondary/:Secondname',
+        element: lazyLoad('Secondary')
     },
     // 搜索
     {
@@ -110,7 +123,7 @@ const routes: Array<Router> = [
         element: lazyLoad('Search'),
         children: [
             {
-                path: 'product',
+                path: 'product/:params',
                 element: lazyLoad('Product')
             },
             {
@@ -134,7 +147,7 @@ const routes: Array<Router> = [
     },
     {
         path: '/advisory', // 咨询服务
-        element: lazyLoad('Advisory')
+        element: lazyLoad('Home')
     },
     {
         path: '/partner', // 合作伙伴查询

@@ -1,10 +1,9 @@
 import React,{useEffect,useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { ShopImg } from 'Api/bestShop'
-import Select from '../select'
 
 function All() {
-	let navigate = useNavigate()
+	// 获取数据
 	let [allImg,setAllImg]:any = useState()
 	let shoes = {
 		parent_name:'鞋类',
@@ -24,33 +23,40 @@ function All() {
 	}
 	useEffect(()=>{
 		let shoplist:any[] = []
-		let p1 = ShopImg(shoes).then((data:any)=>{
+		let sho = ShopImg(shoes).then((data:any)=>{
 			shoplist.push(...data)
 		})
-		let p2 = ShopImg(clothes).then((data:any)=>{
+		let clo = ShopImg(clothes).then((data:any)=>{
 			shoplist.push(...data)
 		})
-		let p3 = ShopImg(parts).then((data:any)=>{
+		let par = ShopImg(parts).then((data:any)=>{
 			shoplist.push(...data)
 		})
-		let p4 = ShopImg(children).then((data:any)=>{
+		let chi = ShopImg(children).then((data:any)=>{
 			shoplist.push(...data)
 		})
-		Promise.all([p1,p2,p3,p4]).then(()=>{
-			shoplist.sort(function (a:any, b:any) {
-				return (b.sale - a.sale)
+		Promise.all([sho,clo,par,chi]).then(()=>{
+			shoplist.sort(function (small:any, big:any) {
+				return (big.sale - small.sale)
 			});
 			setAllImg([...shoplist])
 		})
 	},[])
+
+	// 跳转详情页
+	let navigate = useNavigate()
 	const goDetail = (id:number)=>{
-		navigate('/details',{state:{id}})
+		navigate(`/details/${id}`)
 	}
 	
 	return (
 		<div className='child'>
 			<ul className='child-classify'></ul>
-			<Select />
+			<select>
+			<option>日常的</option>
+			<option>每周</option>
+			<option>每月一次</option>
+		</select>
 			<div className='child-hot'>
 				<ul className='child-hot-top'>
 					{
@@ -67,7 +73,7 @@ function All() {
 										<div className="textMax">
 											<div className="text_wrap">
 												<div className="brand">LOEUVRE</div>
-												<div className="front"> [펜트하우스 이지아,강민경,효민,류이서,보라끌레르 착용] | [04/16 예약배송] </div>
+												<div className="front"> {shop.title} </div>
 												<div className="product"> Sac de Trompette Small FA0SB013-10 </div>
 											</div>
 											<div className="price">
@@ -100,8 +106,8 @@ function All() {
 										<div className="textMax">
 											<div className="text_wrap">
 												<div className="brand">vunque</div>
-												<div className="front"> [댓글 이벤트] | [04/16 예약배송] </div>
-												<div className="product"> Toque tote S (토크 토트 스몰) Light beige </div>
+												<div className="product"> {shop.title} </div>
+												<div className="front"> Toque tote S (토크 토트 스몰) Light beige </div>
 											</div>
 											<div className="price">
 												<span className="discount_price">{shop.price}</span>
@@ -128,8 +134,8 @@ function All() {
 									<div className="textMax">
 										<div className="text_wrap">
 											<div className="brand">Dunst for WOMEN</div>
+											<div className="product"> {shop.title} </div>
 											<div className="front">[04/23 예약배송]</div>
-											<div className="product"> HALF-SLEEVES BELTED SUMMER-WOOL JACKET SOFT GREIGE_UDJA1E211G1 </div>
 										</div>
 										<div className="price">
 											<span className="discount_price">{shop.price}</span>

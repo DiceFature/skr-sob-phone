@@ -1,4 +1,3 @@
-import Select from '../select'
 function Shose() {
 
 	return (
@@ -10,7 +9,6 @@ function Shose() {
 				<li><span>SHOES</span></li>
 				<li><span>ACC</span></li>
 			</ul>
-			<Select />
 		</div>
 	)
 }
